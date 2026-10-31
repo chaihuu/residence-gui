@@ -54,6 +54,7 @@ import com.bekvon.bukkit.residence.economy.EssentialsEcoAdapter;
 import com.bekvon.bukkit.residence.economy.TransactionManager;
 import com.bekvon.bukkit.residence.economy.rent.RentManager;
 import com.bekvon.bukkit.residence.gui.FlagUtil;
+import com.bekvon.bukkit.residence.gui.menu.MenuManager;
 import com.bekvon.bukkit.residence.itemlist.WorldItemManager;
 import com.bekvon.bukkit.residence.listeners.CrackShotListener;
 import com.bekvon.bukkit.residence.listeners.ResidenceBlockListener;
@@ -162,6 +163,12 @@ public class Residence extends JavaPlugin {
     private PlayerManager PlayerManager;
     private FlagUtil FlagUtilManager;
     private ShopSignUtil ShopSignUtilManager;
+    private MenuManager MenuManager;
+
+    /** Menu translation source, see {@link #getUiLanguage()}. */
+    private com.bekvon.bukkit.residence.gui.ui.text.UiLanguageManager uiLanguage;
+    private com.bekvon.bukkit.residence.gui.ui.data.DataProviders dataProviders;
+    private com.bekvon.bukkit.residence.gui.ui.MenuFormat menuFormat;
 //    private TownManager townManager;
     private RandomTp RandomTpManager;
 
@@ -418,6 +425,8 @@ public class Residence extends JavaPlugin {
             getConfigManager().UpdateFlagFile();
 
             getFlagUtilManager().load();
+
+            getMenuManager().load();
 
             this.getPermissionManager().startCacheClearScheduler();
 
@@ -837,6 +846,56 @@ public class Residence extends JavaPlugin {
         if (FlagUtilManager == null)
             FlagUtilManager = new FlagUtil(this);
         return FlagUtilManager;
+    }
+
+    public MenuManager getMenuManager() {
+        if (MenuManager == null)
+            MenuManager = new MenuManager(this);
+        return MenuManager;
+    }
+
+    /**
+     * Translation source of the Residence menu (chest menu and Bedrock form).
+     * Loaded lazily so it is available before the config has been read.
+     */
+    public com.bekvon.bukkit.residence.gui.ui.text.UiLanguageManager getUiLanguage() {
+        if (uiLanguage == null) {
+            uiLanguage = new com.bekvon.bukkit.residence.gui.ui.text.UiLanguageManager(this);
+            uiLanguage.load();
+        }
+        return uiLanguage;
+    }
+
+    /**
+     * Menu configuration, read from {@code Global.GUI.Menu}.
+     */
+    public com.bekvon.bukkit.residence.gui.ui.config.MenuSettings getMenuSettings() {
+        return getConfigManager().getMenuSettings();
+    }
+
+    /**
+     * Read-only queries against the Residence model used by the menu.
+     */
+    public com.bekvon.bukkit.residence.gui.ui.data.DataProviders getDataProviders() {
+        if (dataProviders == null)
+            dataProviders = new com.bekvon.bukkit.residence.gui.ui.data.DataProviders(this);
+        return dataProviders;
+    }
+
+    /**
+     * Builds an item source bound to this plugin instance.
+     */
+    public com.bekvon.bukkit.residence.gui.ui.data.ArgSources createArgSources() {
+        return com.bekvon.bukkit.residence.gui.ui.data.ArgSources.create(this);
+    }
+
+    /**
+     * Visual grammar of the menu (titles, tooltips, hints).
+     */
+    public com.bekvon.bukkit.residence.gui.ui.MenuFormat getMenuFormat() {
+        if (menuFormat == null)
+            menuFormat = new com.bekvon.bukkit.residence.gui.ui.MenuFormat(this);
+        return menuFormat;
     }
 
     public PermissionManager getPermissionManager() {

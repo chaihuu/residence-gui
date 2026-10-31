@@ -188,6 +188,16 @@ public class ConfigManager {
     protected boolean spoutEnable;
     protected boolean AutoMobRemoval;
     protected boolean useFlagGUI;
+    protected boolean menuEnabled = true;
+    protected boolean menuForceForBedrock = true;
+    protected boolean menuSuggestToPlayers = true;
+    /**
+     * Full menu configuration (layout, buttons, languages). Read from
+     * {@code Global.GUI.Menu} and kept immutable, so the renderers never have to
+     * look at the raw config.
+     */
+    protected com.bekvon.bukkit.residence.gui.ui.config.MenuSettings menuSettings = com.bekvon.bukkit.residence.gui.ui.config.MenuSettings
+            .defaults();
     protected int AutoMobRemovalInterval;
     protected boolean enableLeaseMoneyAccount;
     protected boolean Couldroncompatibility;
@@ -1299,6 +1309,33 @@ public class ConfigManager {
             Mat = CMIMaterial.LIGHT_GRAY_WOOL;
         guiBottonStates.put(FlagState.NEITHER, Mat.newItemStack());
 
+        c.addComment("Global.GUI.Menu.Enabled", "Enable the interactive Residence menu opened with /res menu",
+                "The menu lists every Residence command and lets players pick each argument by clicking",
+                "instead of typing the full command. Useful for Bedrock players connected through Geyser.");
+        menuEnabled = c.get("Global.GUI.Menu.Enabled", true);
+        c.addComment("Global.GUI.Menu.ForceForBedrock",
+                "When enabled, Bedrock (Geyser/Floodgate) players get the chest menu suggested by default",
+                "because chat suggestions and hover text are not usable in the Bedrock UI.");
+        menuForceForBedrock = c.get("Global.GUI.Menu.ForceForBedrock", true);
+        c.addComment("Global.GUI.Menu.SuggestOnJoin", "Tell players about /res menu when they join");
+        menuSuggestToPlayers = c.get("Global.GUI.Menu.SuggestOnJoin", true);
+
+        c.addComment("Global.GUI.Menu.ClientUi",
+                "Which user interface clients get: AUTO (form for Bedrock players, chest menu for Java players),",
+                "BEDROCK_FORM (force forms for Bedrock clients) or INVENTORY (chest menu for everyone).");
+        c.addComment("Global.GUI.Menu.Bedrock.UseForms", "Send a Bedrock form instead of the chest menu (requires Floodgate)");
+        c.addComment("Global.GUI.Menu.Bedrock.AutoDetect", "Detect Bedrock players automatically through Geyser/Floodgate");
+        c.addComment("Global.GUI.Menu.Language.Default", "Menu language used when the client language has no matching file",
+                "The files live in plugins/Residence/lang/<code>.yml");
+        c.addComment("Global.GUI.Menu.Language.Available", "Menu languages that are loaded and offered in the language picker");
+        c.addComment("Global.GUI.Menu.Language.AutoDetect",
+                "Match the client language automatically: Java through the client locale, Bedrock through the Floodgate API");
+        c.addComment("Global.GUI.Menu.Language.ShowLanguageButton", "Show the language picker button to Bedrock players");
+        c.addComment("Global.GUI.Menu.Layout",
+                "Visual layout of the menu. Every value below is optional and falls back to the built in default.",
+                "See the bundled config example in the plugin readme for the full list of buttons.");
+        menuSettings = com.bekvon.bukkit.residence.gui.ui.config.MenuSettings.read(c.getConfigurationSection("Global.GUI.Menu"));
+
         c.addComment("Global.AutoMobRemoval", "Default = false. Enabling this, residences with flag nomobs will be cleared from monsters in regular intervals.",
                 "This is quite heavy on server side, so enable only if you really need this feature");
         AutoMobRemoval = c.get("Global.AutoMobRemoval.Use", false);
@@ -2033,6 +2070,33 @@ public class ConfigManager {
 
     public boolean useFlagGUI() {
         return useFlagGUI;
+    }
+
+    public boolean isMenuEnabled() {
+        return menuEnabled;
+    }
+
+    /**
+     * When enabled, Bedrock (Geyser) players are pointed at the chest menu by
+     * default because it is the closest equivalent of a native form.
+     */
+    public boolean isMenuForceForBedrock() {
+        return menuForceForBedrock;
+    }
+
+    /**
+     * Whether players are told about the menu once they join.
+     */
+    public boolean isMenuSuggestToPlayers() {
+        return menuSuggestToPlayers;
+    }
+
+    /**
+     * Full menu configuration: layout, button definitions, languages and the
+     * client interface selection.
+     */
+    public com.bekvon.bukkit.residence.gui.ui.config.MenuSettings getMenuSettings() {
+        return menuSettings;
     }
 
     @Deprecated

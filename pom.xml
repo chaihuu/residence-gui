@@ -14,6 +14,43 @@
 	
 
 	<dependencies>
+		<!--
+			Adventure is the text engine of Paper and is also shipped by modern
+			Spigot builds. It is declared explicitly (provided scope) because the
+			menu renders every string as an Adventure component instead of legacy
+			colour codes, and an explicit dependency keeps the module path that
+			paper-api uses for Adventure intact.
+		-->
+		<dependency>
+			<groupId>net.kyori</groupId>
+			<artifactId>adventure-api</artifactId>
+			<version>5.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.kyori</groupId>
+			<artifactId>adventure-text-minimessage</artifactId>
+			<version>5.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.kyori</groupId>
+			<artifactId>adventure-text-serializer-gson</artifactId>
+			<version>5.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.kyori</groupId>
+			<artifactId>adventure-text-serializer-plain</artifactId>
+			<version>5.2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.kyori</groupId>
+			<artifactId>adventure-text-serializer-legacy</artifactId>
+			<version>5.2.0</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 		    <groupId>org.yaml</groupId>
 		    <artifactId>snakeyaml</artifactId>

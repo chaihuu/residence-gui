@@ -438,6 +438,7 @@ public enum lm {
     Gui_Flag_NameColor("&7"),
     Gui_Actions(new ArrayList<String>(Arrays.asList("&2Left click to enable", "&cRight click to disable", "&eShift + left click to remove"))),
 
+
     InformationPage_Top("&e___/ &a %1 - %2 &e \\___"),
     InformationPage_TopSingle("&e___/ &a %1 &e \\___"),
     InformationPage_GeneralList("&2 %1 &6- &e%2"),

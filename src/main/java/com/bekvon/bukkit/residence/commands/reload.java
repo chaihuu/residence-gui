@@ -32,6 +32,7 @@ public class reload implements cmd {
             plugin.getLM().LanguageReload();
             plugin.getLocaleManager().LoadLang(plugin.getConfigManager().getLanguage());
             LocaleManager.parseHelpEntries();
+            plugin.getMenuManager().reload();
             CMIMessages.sendMessage(sender, plugin.getPrefix() + " Reloaded language file.");
             return true;
         case "config":
@@ -39,6 +40,9 @@ public class reload implements cmd {
             if (plugin.getWebMapManager() != null) {
                 plugin.getWebMapManager().activate();
             }
+            // The menu layout and the language list live in the config, so the
+            // menu has to re-read both.
+            plugin.getMenuManager().reload();
             CMIMessages.sendMessage(sender, plugin.getPrefix() + " Reloaded config file.");
             return true;
         case "groups":

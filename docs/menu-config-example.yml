@@ -1,0 +1,346 @@
+# ============================================================================
+#  Residence 菜单配置示例 - config.yml
+# ----------------------------------------------------------------------------
+#  把下面这一段粘贴到 plugins/Residence/config.yml 的 Global.GUI 下面，
+#  或者在 Global.GUI 中新增/合并 "Menu:" 段。
+#  所有键都是可选的：没有写的键会使用内置默认值，旧配置（只有 Enabled /
+#  ForceForBedrock / SuggestOnJoin）完全不需要修改即可继续工作。
+#  修改后执行 /res reload config 立即生效。
+# ============================================================================
+
+Global:
+  GUI:
+    Menu:
+
+      # ---- 兼容旧配置的三项（含义保持不变）--------------------------------
+      # 是否启用 /res menu 菜单
+      Enabled: true
+      # 基岩版玩家默认使用菜单
+      ForceForBedrock: true
+      # 玩家加入时提示菜单
+      SuggestOnJoin: true
+
+      # ---- 客户端界面选择 --------------------------------------------------
+      # AUTO         : 基岩版玩家收到表单，Java 版玩家收到箱子菜单（默认，推荐）
+      # BEDROCK_FORM : 基岩版玩家强制使用表单
+      # INVENTORY    : 所有玩家都使用箱子菜单
+      ClientUi: AUTO
+      Bedrock:
+        # 是否使用 Flodgate/Cumulus 发送基岩版表单（需要已安装 Floodgate）
+        UseForms: true
+        # 自动识别通过 Geyser/Floodgate 连接的基岩版玩家
+        AutoDetect: true
+
+      # ---- 多语言 ----------------------------------------------------------
+      Language:
+        # 客户端语言匹配不到时使用的语言（lang/<代码>.yml）
+        Default: zh_CN
+        # 已加载并会在语言选择器中显示的语言
+        Available:
+          - zh_CN
+          - en_US
+        # Java 版读取客户端 Locale，基岩版通过 Floodgate API 读取；关闭后始终使用 Default
+        AutoDetect: true
+        # 是否向基岩版玩家显示语言切换按钮
+        ShowLanguageButton: true
+        # 调试：在文本后显示翻译键，方便查找需要修改的 key
+        DebugPreferKeys: false
+
+      # ---- 视觉布局 --------------------------------------------------------
+      Layout:
+
+        # 标题使用的语言键（在 lang/*.yml 的 menu.style.title 中定义外观）
+        title: menu.style.title
+
+        # 行数 2-6（第 6 行为固定导航栏）
+        rows: 6
+
+        # 用边框填充物品铺满空槽位
+        fill-border: true
+
+        # 边框填充物品（与箱子菜单一致的统一风格）
+        filler:
+          material: GRAY_STAINED_GLASS_PANE
+          # 当前服务端版本不存在主材质时依次尝试
+          fallback-materials:
+            - GRAY_STAINED_GLASS_PANE
+            - BLACK_STAINED_GLASS_PANE
+            - PAPER
+
+        # 基岩版表单最多显示的按钮数（超出部分自动分页，避免超出基岩版按钮数量限制）
+        bedrock:
+          max-buttons: 12
+
+        # 固定导航槽位（箱子菜单）
+        slots:
+          previous: 48     # 上一页
+          page: 49         # 页码
+          next: 50         # 下一页
+          back: 45         # 返回
+          close: 53        # 关闭
+          info: 4          # 信息
+          language: 8      # 语言切换
+
+        # ------------------------------------------------------------------
+        # 每个按钮都可以单独配置：material / slot / name / lore / enabled
+        #   name / lore 的值是 lang/*.yml 中的键，不是文本本身
+        #   slot: -1 表示仅用于基岩版表单，不占用箱子槽位
+        #   enabled: false 可隐藏按钮；只写 enabled 而不写其它键时保留默认外观
+        # ------------------------------------------------------------------
+        buttons:
+
+          # 导航（槽位由上面的 slots 统一控制）
+          previous:
+            enabled: true
+            material: ARROW
+            name: menu.button.previous.name
+            lore:
+              - menu.button.previous.lore
+            bedrock:
+              icon-path: textures/ui/arrow_left.png
+
+          next:
+            enabled: true
+            material: ARROW
+            name: menu.button.next.name
+            lore:
+              - menu.button.next.lore
+            bedrock:
+              icon-path: textures/ui/arrow_right.png
+
+          page_indicator:
+            enabled: true
+            material: PAPER
+            name: menu.button.page_indicator.name
+            lore:
+              - menu.button.page_indicator.lore
+
+          back:
+            enabled: true
+            material: SPECTRAL_ARROW
+            name: menu.button.back.name
+            lore:
+              - menu.button.back.lore
+            bedrock:
+              icon-path: textures/ui/arrow_left.png
+
+          close:
+            enabled: true
+            material: BARRIER
+            name: menu.button.close.name
+            lore:
+              - menu.button.close.lore
+            bedrock:
+              icon-path: textures/ui/cancel.png
+
+          info:
+            enabled: true
+            material: BOOK
+            name: menu.button.info.name
+            lore:
+              - menu.button.info.lore
+
+          language:
+            enabled: true
+            material: KNOWLEDGE_BOOK
+            name: menu.button.language.name
+            lore:
+              - menu.button.language.lore
+            bedrock:
+              icon-path: textures/ui/book_colored_brown.png
+
+          # 根页面快捷入口
+          current_residence:
+            enabled: true
+            material: GRASS_BLOCK
+            slot: 40
+            name: menu.button.current_residence.name
+            lore:
+              - menu.button.current_residence.lore
+            bedrock:
+              icon-path: textures/blocks/grass_side_carried.png
+
+          current_residence_empty:
+            enabled: true
+            material: DIRT
+            slot: 40
+            name: menu.button.current_residence_empty.name
+            lore:
+              - menu.button.current_residence_empty.lore
+            bedrock:
+              icon-path: textures/blocks/dirt.png
+
+          quick_flags:
+            enabled: true
+            material: COMPARATOR
+            slot: 42
+            name: menu.button.quick_flags.name
+            lore:
+              - menu.button.quick_flags.lore
+
+          residence_list:
+            enabled: true
+            material: CHEST
+            slot: 44
+            name: menu.button.residence_list.name
+            lore:
+              - menu.button.residence_list.lore
+
+          # 确认页面
+          confirm:
+            material: LIME_CONCRETE
+            slot: 22
+            name: menu.button.confirm.name
+            lore:
+              - menu.button.confirm.lore
+
+          confirm_danger:
+            material: RED_CONCRETE
+            slot: 22
+            name: menu.button.confirm_danger.name
+            lore:
+              - menu.button.confirm_danger.lore
+
+          cancel:
+            material: BARRIER
+            slot: 24
+            name: menu.button.cancel.name
+            lore:
+              - menu.button.cancel.lore
+
+          # 参数页面
+          type_in_chat:
+            material: OAK_SIGN
+            slot: 49
+            name: menu.button.type_in_chat.name
+            lore:
+              - menu.button.type_in_chat.lore
+
+          type_manually:
+            material: WRITABLE_BOOK
+            slot: 48
+            name: menu.button.type_manually.name
+            lore:
+              - menu.button.type_manually.lore
+
+          value_minus:
+            material: RED_STAINED_GLASS_PANE
+            slot: 38
+            name: menu.button.value_minus.name
+            lore:
+              - menu.button.value_minus.lore
+
+          value_current:
+            material: GOLD_BLOCK
+            slot: 39
+            name: menu.button.value_current.name
+            lore:
+              - menu.button.value_current.lore
+
+          value_plus:
+            material: LIME_STAINED_GLASS_PANE
+            slot: 40
+            name: menu.button.value_plus.name
+            lore:
+              - menu.button.value_plus.lore
+
+          value_use:
+            material: EMERALD_BLOCK
+            slot: 43
+            name: menu.button.value_use.name
+            lore:
+              - menu.button.value_use.lore
+
+          # 空状态占位物品（列表为空时显示，让界面不会出现"空白页"）
+          empty_residence:
+            material: GRASS_BLOCK
+            name: menu.empty.residence.name
+            lore:
+              - menu.empty.residence.lore
+          empty_player:
+            material: PLAYER_HEAD
+            name: menu.empty.player.name
+            lore:
+              - menu.empty.player.lore
+          empty_member:
+            material: PLAYER_HEAD
+            name: menu.empty.member.name
+            lore:
+              - menu.empty.member.lore
+          empty_flag:
+            material: WHITE_BANNER
+            name: menu.empty.flag.name
+            lore:
+              - menu.empty.flag.lore
+          empty_group:
+            material: NAME_TAG
+            name: menu.empty.group.name
+            lore:
+              - menu.empty.group.lore
+          empty_world:
+            material: GRASS_BLOCK
+            name: menu.empty.world.name
+            lore:
+              - menu.empty.world.lore
+          empty_choice:
+            material: BARRIER
+            name: menu.empty.choice.name
+            lore:
+              - menu.empty.choice.lore
+          empty_section:
+            material: BOOK
+            name: menu.empty.section.name
+            lore:
+              - menu.empty.section.lore
+          empty_action:
+            material: BARRIER
+            name: menu.empty.action.name
+            lore:
+              - menu.empty.action.lore
+
+        # ------------------------------------------------------------------
+        # 根菜单章节：可以改材质、图标、槽位、命令列表，也可以新增自定义章节
+        #   enabled: false  隐藏章节
+        #   commands: [...] 只显示列出的命令（不填则按内置分组）
+        # ------------------------------------------------------------------
+        chapters:
+          general:
+            material: GRASS_BLOCK
+            fallback-materials:
+              - GRASS_BLOCK
+              - DIRT
+            bedrock:
+              icon-path: textures/blocks/grass_side_carried.png
+          flags:
+            material: COMPARATOR
+            bedrock:
+              icon-path: textures/items/comparator.png
+          ownership:
+            material: NAME_TAG
+          areas:
+            material: GOLDEN_SHOVEL
+            fallback-materials:
+              - GOLDEN_SHOVEL
+              - WOODEN_SHOVEL
+          teleport:
+            material: ENDER_PEARL
+          economy:
+            material: GOLD_INGOT
+          raid:
+            material: CROSSBOW
+          chat:
+            material: WRITTEN_BOOK
+          admin:
+            material: COMMAND_BLOCK
+            # 只有 Residence 管理员才会看到该章节
+          danger:
+            material: TNT
+
+          # 自定义章节示例：只会显示列出的两个命令
+          # teleport_short:
+          #   material: COMPASS
+          #   slot: 36
+          #   admin: false
+          #   commands:
+          #     - tp
+          #     - tpa

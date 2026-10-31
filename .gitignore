@@ -15,3 +15,7 @@
 README
 LICENSE.txt
 /target/
+
+#local maven repo used for offline verification
+/.m2repo/
+/.m2home/

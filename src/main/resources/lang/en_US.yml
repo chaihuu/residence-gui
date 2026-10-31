@@ -1,0 +1,762 @@
+# ============================================================================
+#  Residence menu language file - English (en_US)
+# ----------------------------------------------------------------------------
+#  Every string uses MiniMessage tags, legacy & colour codes are not supported:
+#    <gray>gray</gray>  <gold>gold</gold>  <gradient:#ff5555:#ffaa00>gradient</gradient>
+#    <bold>bold</bold>  <italic>italic</italic>  <underlined>underline</underlined>
+#  Braces {xxx} are placeholders such as {player}, {residence} and {page}.
+#  A missing key falls back to: player language -> Default language -> bundled
+#  resource -> the key name itself.
+#  Run /res reload lang to apply changes; both user interfaces (chest menu and
+#  Bedrock form) switch at once because they share this file.
+# ============================================================================
+
+# ---------------------------------------------------------------------------
+# Visual style - shared by the chest menu and the Bedrock form so both look
+# identical.
+# ---------------------------------------------------------------------------
+menu:
+  style:
+    # Menu name shown at the start of every title
+    brand: "<gold><bold>Residence</bold></gold>"
+    # Separator between the brand and the page path
+    separator: "<dark_gray>»</dark_gray>"
+    # Title template: {brand}, {separator}, {path}
+    title: "{brand}<reset> <gray>Menu</gray>"
+    title-page: " <dark_gray>[</dark_gray><gray>{page}</gray><dark_gray>/</dark_gray><gray>{pages}</gray><dark_gray>]</dark_gray>"
+    # Default colour of description lines
+    description-colour: "<gray>"
+    # Default colour of the hint lines
+    hints-colour: "<dark_gray>"
+    # Bullet in front of a hint
+    bullet: "•"
+    # Filler used as an empty tooltip line (a single space is enough)
+    blank-line: " "
+    # Wrap width of description lines (Java client)
+    wrap-width: "52"
+    # Wrap width of description lines (Bedrock client, narrower dialog)
+    wrap-width-bedrock: "42"
+    # Name and lore of the border filler item
+    filler-name: "<dark_gray> </dark_gray>"
+    filler-lore:
+      - "<dark_gray> "
+    # Material of a button that cannot be used, e.g. "previous page" on page 1
+    disabled-material: "GRAY_STAINED_GLASS_PANE"
+
+  # -------------------------------------------------------------------------
+  # Screen titles ({target} = chapter name, residence name ...)
+  # -------------------------------------------------------------------------
+  title:
+    root: ""
+    chapter: "{chapter}"
+    residence: "<gold>{target}</gold>"
+    argument: "<gold>{command}</gold> <dark_gray>·</dark_gray> <gray>step {step}/{steps}</gray>"
+    confirm: "<gold>Confirm</gold>"
+    language: "<aqua>Language</aqua>"
+
+  # -------------------------------------------------------------------------
+  # Chapters of the root screen
+  # -------------------------------------------------------------------------
+  chapter:
+    general:
+      name: "<white>General</white>"
+      lore: "Overview, information and creating residences"
+    flags:
+      name: "<white>Flags</white>"
+      lore: "Change residence flags and player flags"
+    ownership:
+      name: "<white>Ownership</white>"
+      lore: "Transfer, rename and manage members"
+    areas:
+      name: "<white>Selection & Areas</white>"
+      lore: "Select, resize, subzones and physical areas"
+    teleport:
+      name: "<white>Teleport</white>"
+      lore: "Teleport to a residence or out of it"
+    economy:
+      name: "<white>Economy</white>"
+      lore: "Market, bank, shop and leases"
+    raid:
+      name: "<white>Raids</white>"
+      lore: "Start, defend and monitor raids"
+    chat:
+      name: "<white>Chat & Messages</white>"
+      lore: "Residence chat and enter/leave messages"
+    admin:
+      name: "<white>Admin</white>"
+      lore: "Server administration commands"
+    danger:
+      name: "<white>Danger zone</white>"
+      lore: "Destructive operations that cannot be undone"
+    # Number of commands shown inside a chapter entry
+    count: "<dark_gray>{count} command(s)</dark_gray>"
+
+  # -------------------------------------------------------------------------
+  # Buttons (material and slot can be overridden in config.yml Layout.Buttons)
+  # -------------------------------------------------------------------------
+  button:
+    previous:
+      name: "<green>Previous page</green>"
+      disabled-name: "<dark_gray>Already on the first page</dark_gray>"
+      lore:
+        - "<gray>Go to page {page}/{pages}</gray>"
+        - ""
+        - "<dark_gray>• Left click to change page</dark_gray>"
+    next:
+      name: "<green>Next page</green>"
+      disabled-name: "<dark_gray>Already on the last page</dark_gray>"
+      lore:
+        - "<gray>Go to page {page}/{pages}</gray>"
+        - ""
+        - "<dark_gray>• Left click to change page</dark_gray>"
+    page_indicator:
+      name: "<gold>{page}</gold> <dark_gray>/</dark_gray> <gray>{pages}</gray>"
+      lore:
+        - "<gray>Current page: {page}/{pages}</gray>"
+    back:
+      name: "<yellow>Back</yellow>"
+      lore:
+        - "<gray>Return to the previous screen</gray>"
+        - ""
+        - "<dark_gray>• Left click to go back</dark_gray>"
+    close:
+      name: "<red>Close</red>"
+      lore:
+        - "<gray>Close this menu</gray>"
+        - ""
+        - "<dark_gray>• Left click to close</dark_gray>"
+    info:
+      name: "<aqua>Information</aqua>"
+      lore:
+        - "<gray>About this screen</gray>"
+    language:
+      name: "<aqua>Language</aqua>"
+      lore:
+        - "<gray>Current language: <white>{languageName}</white></gray>"
+        - ""
+        - "<dark_gray>• Left click to switch language</dark_gray>"
+    language_entry:
+      name: "<white>{languageName}</white>"
+    current_residence:
+      name: "<green>{residence}</green>"
+      lore:
+        - "<gray>Owner: <white>{owner}</white></gray>"
+        - "<dark_gray>You are standing in this residence</dark_gray>"
+        - ""
+        - "<dark_gray>• Left click to manage it</dark_gray>"
+    current_residence_empty:
+      name: "<gray>No residence here</gray>"
+      lore:
+        - "<gray>Walk into a residence to manage it here</gray>"
+    quick_flags:
+      name: "<yellow>Quick flag editor</yellow>"
+      lore:
+        - "<gray>Open the flags of the residence you stand in</gray>"
+        - ""
+        - "<dark_gray>• Left click to open</dark_gray>"
+    residence_list:
+      name: "<aqua>Residence list</aqua>"
+      lore:
+        - "<gray>Browse every residence you own</gray>"
+        - ""
+        - "<dark_gray>• Left click to browse</dark_gray>"
+    confirm:
+      name: "<green>Confirm</green>"
+      lore:
+        - "<gray>Run this command:</gray>"
+        - "<white>{line}</white>"
+        - ""
+        - "<dark_gray>• Left click to confirm</dark_gray>"
+    confirm_danger:
+      name: "<red><bold>Confirm (dangerous)</bold></red>"
+      lore:
+        - "<red>This cannot be undone!</red>"
+        - "<white>{line}</white>"
+        - ""
+        - "<dark_gray>• Left click to confirm</dark_gray>"
+    cancel:
+      name: "<red>Cancel</red>"
+      lore:
+        - "<gray>Do not run this command</gray>"
+    command_preview:
+      name: "<yellow>Command preview</yellow>"
+      lore:
+        - "<gray>This is what will run:</gray>"
+        - "<white>{line}</white>"
+    type_in_chat:
+      name: "<yellow>Type it in chat</yellow>"
+      lore:
+        - "<gray>Type <white>{label}</white> in chat, works with every input device</gray>"
+        - ""
+        - "<dark_gray>• Left click to start typing</dark_gray>"
+    type_manually:
+      name: "<gray>Type the command myself</gray>"
+      lore:
+        - "<gray>Closes the menu and puts the command into the chat box</gray>"
+        - "<dark_gray>{line}</dark_gray>"
+    value_minus:
+      name: "<red>- {step}</red>"
+      lore:
+        - "<gray>Lower the value by <white>{step}</white></gray>"
+        - ""
+        - "<dark_gray>• Left click to lower</dark_gray>"
+    value_plus:
+      name: "<green>+ {step}</green>"
+      lore:
+        - "<gray>Raise the value by <white>{step}</white></gray>"
+        - ""
+        - "<dark_gray>• Left click to raise</dark_gray>"
+    value_current:
+      name: "<gold>{value}</gold>"
+      lore:
+        - "<gray>Minimum: <white>{min}</white></gray>"
+        - "<gray>Maximum: <white>{max}</white></gray>"
+    value_use:
+      name: "<green>Use {value}</green>"
+      lore:
+        - "<gray>Continue with this value</gray>"
+        - ""
+        - "<dark_gray>• Left click to use</dark_gray>"
+
+  # -------------------------------------------------------------------------
+  # Empty state placeholders
+  # -------------------------------------------------------------------------
+  empty:
+    residence:
+      name: "<gray>No residences available</gray>"
+      lore:
+        - "<gray>You do not own a residence or cannot act on any</gray>"
+    player:
+      name: "<gray>Nobody else online</gray>"
+      lore:
+        - "<gray>There are no other players online</gray>"
+    member:
+      name: "<gray>No members</gray>"
+      lore:
+        - "<gray>This residence has no other members yet</gray>"
+    flag:
+      name: "<gray>No flags available</gray>"
+      lore:
+        - "<gray>You cannot change any flag here</gray>"
+    group:
+      name: "<gray>No permission groups</gray>"
+      lore:
+        - "<gray>No group is defined in groups.yml</gray>"
+    world:
+      name: "<gray>No worlds</gray>"
+      lore:
+        - "<gray>The server has no loaded world</gray>"
+    choice:
+      name: "<gray>No options</gray>"
+      lore:
+        - "<gray>This argument has no selectable option</gray>"
+    section:
+      name: "<gray>Nothing here</gray>"
+      lore:
+        - "<gray>This screen has no entry</gray>"
+    action:
+      name: "<gray>No action available</gray>"
+      lore:
+        - "<gray>You do not have permission for any action here</gray>"
+
+  # -------------------------------------------------------------------------
+  # Hints at the bottom of a tooltip
+  # -------------------------------------------------------------------------
+  hint:
+    left_click: "<dark_gray>Left click</dark_gray> <gray>to select</gray>"
+    right_click: "<dark_gray>Right click</dark_gray> <gray>for details</gray>"
+    shift_click: "<dark_gray>Shift + left click</dark_gray> <gray>to quick use</gray>"
+    middle_click: "<dark_gray>Middle click</dark_gray> <gray>to copy</gray>"
+    selected: "<dark_gray>Currently selected</dark_gray>"
+
+  # -------------------------------------------------------------------------
+  # List entries
+  # -------------------------------------------------------------------------
+  item:
+    residence:
+      owner: "<gray>Owner: <white>{owner}</white></gray>"
+      world: "<gray>World: <white>{world}</white></gray>"
+      subzones: "<gray>Subzones: <white>{subzones}</white></gray>"
+      for-rent: "<green>For rent</green>"
+      for-sale: "<green>For sale</green>"
+      here: "<aqua>You are standing here</aqua>"
+    player:
+      world: "<gray>World: <white>{world}</white></gray>"
+    flag:
+      desc: "<gray>{desc}</gray>"
+      mode: "<gray>Applies to: <white>{mode}</white></gray>"
+    world:
+      players: "<gray>Players online: <white>{players}</white></gray>"
+    choice:
+      value: "<gray>Value: <white>{value}</white></gray>"
+    state:
+      desc: "<gray>Flag state</gray>"
+
+  # -------------------------------------------------------------------------
+  # Arguments, states and choices
+  # -------------------------------------------------------------------------
+  argument:
+    skip: "<gray>(Skip this value)</gray>"
+    skip-lore: "<gray>Continue without this optional argument</gray>"
+    number-value: "<aqua>{value}</aqua>"
+    number-value-lore: "<gray>Set the value to <white>{value}</white></gray>"
+
+  state:
+    "true": "<green>Enabled</green>"
+    "false": "<red>Disabled</red>"
+    remove: "<gray>Removed</gray>"
+
+  choice:
+    list: "<white>List</white>"
+    add: "<green>Add</green>"
+    remove: "<red>Remove</red>"
+    apply: "<aqua>Apply</aqua>"
+    set: "<white>Set</white>"
+    pset: "<white>Player set</white>"
+    gset: "<white>Group set</white>"
+    view: "<white>View</white>"
+    allow: "<green>Allow</green>"
+    block: "<red>Block</red>"
+    sell: "<green>Sell</green>"
+    unsell: "<gray>Unsell</gray>"
+    buy: "<green>Buy</green>"
+    rent: "<aqua>Rent</aqua>"
+    rentable: "<aqua>Rentable</aqua>"
+    autopay: "<aqua>Autopay</aqua>"
+    payrent: "<aqua>Pay rent</aqua>"
+    release: "<red>Release</red>"
+    unrent: "<red>Unrent</red>"
+    sign: "<white>Sign</white>"
+    confirm: "<gold>Confirm</gold>"
+    balance: "<gold>Balance</gold>"
+    deposit: "<green>Deposit</green>"
+    withdraw: "<red>Withdraw</red>"
+    vote: "<green>Vote</green>"
+    like: "<green>Like</green>"
+    votes: "<gray>Votes</gray>"
+    likes: "<gray>Likes</gray>"
+    setdesc: "<white>Set description</white>"
+    createboard: "<white>Create board</white>"
+    deleteboard: "<red>Delete board</red>"
+    cost: "<gold>Cost</gold>"
+    renew: "<green>Renew</green>"
+    expires: "<gray>Expires</gray>"
+    start: "<green>Start</green>"
+    stop: "<red>Stop</red>"
+    kick: "<red>Kick</red>"
+    immunity: "<aqua>Immunity</aqua>"
+    take: "<red>Take</red>"
+    clear: "<gray>Clear</gray>"
+    join: "<green>Join</green>"
+    leave: "<red>Leave</red>"
+    setcolor: "<aqua>Set colour</aqua>"
+    setprefix: "<aqua>Set prefix</aqua>"
+    enter: "<green>Enter</green>"
+    on: "<green>On</green>"
+    off: "<red>Off</red>"
+    coords: "<white>Coordinates</white>"
+    size: "<white>Size</white>"
+    vert: "<white>Vertical</white>"
+    sky: "<white>Sky</white>"
+    bedrock: "<white>Bedrock</white>"
+    expand: "<white>Expand</white>"
+    shift: "<white>Shift</white>"
+    chunk: "<white>Chunk</white>"
+    residence: "<white>Residence</white>"
+    worldedit: "<white>WorldEdit</white>"
+    options: "<white>Options</white>"
+    outward: "<white>Outward</white>"
+    listall: "<white>List all</white>"
+    blacklist: "<red>Blacklist</red>"
+    ignorelist: "<gray>Ignore list</gray>"
+    info: "<aqua>Info</aqua>"
+    replace: "<white>Replace</white>"
+    config: "<white>Config</white>"
+    lang: "<white>Language</white>"
+    groups: "<white>Groups</white>"
+    flags: "<white>Flags</white>"
+
+  flagmode:
+    residence: "<white>Residence</white>"
+    player: "<white>Player</white>"
+    both: "<white>Residence and player</white>"
+
+  # -------------------------------------------------------------------------
+  # Command names and descriptions
+  # -------------------------------------------------------------------------
+  command:
+    flag:
+      dangerous: "<red>This command cannot be undone</red>"
+      admin: "<gold>Admin command</gold>"
+      chat: "<aqua>Recommended in chat</aqua>"
+      no-permission: "<red>You do not have permission for this command</red>"
+    info:
+      name: "<white>Information</white>"
+      desc: "Show detailed information about a residence"
+    current:
+      name: "<white>Current residence</white>"
+      desc: "Show the residence you are standing in"
+    list:
+      name: "<white>Residence list</white>"
+      desc: "List the residences of a player"
+    listall:
+      name: "<white>All residences</white>"
+      desc: "List every residence on the server"
+    limits:
+      name: "<white>Limits</white>"
+      desc: "Show the limits of your permission group"
+    show:
+      name: "<white>Show borders</white>"
+      desc: "Visualise the residence borders"
+    tool:
+      name: "<white>Tools</white>"
+      desc: "Get the selection and information tools"
+    create:
+      name: "<white>Create</white>"
+      desc: "Create a residence from your selection"
+    auto:
+      name: "<white>Auto create</white>"
+      desc: "Size the selection automatically and create a residence"
+    check:
+      name: "<white>Check flag</white>"
+      desc: "Check whether a flag is active for a player"
+    material:
+      name: "<white>Material lookup</white>"
+      desc: "Look up a material name"
+    placeholders:
+      name: "<white>Placeholders</white>"
+      desc: "List the available PlaceholderAPI placeholders"
+    confirm:
+      name: "<white>Confirm removal</white>"
+      desc: "Confirm the pending residence removal"
+    set:
+      name: "<white>Residence flags</white>"
+      desc: "Open the residence flag editor"
+    pset:
+      name: "<white>Player flags</white>"
+      desc: "Set flags for a specific player"
+    flags:
+      name: "<white>Flag list</white>"
+      desc: "List every available flag"
+    gset:
+      name: "<white>Group flags</white>"
+      desc: "Set a flag for a permission group"
+    setall:
+      name: "<white>Set all</white>"
+      desc: "Set a flag on every residence you own"
+    setallfor:
+      name: "<white>Set all for a player</white>"
+      desc: "Set a flag on every residence of a player"
+    mirror:
+      name: "<white>Mirror flags</white>"
+      desc: "Copy all flags of one residence to another"
+    pmirror:
+      name: "<white>Mirror player flags</white>"
+      desc: "Copy player flags onto another player"
+    reset:
+      name: "<white>Reset flags</white>"
+      desc: "Reset residence flags to the defaults"
+    lists:
+      name: "<white>Flag presets</white>"
+      desc: "Apply or edit the predefined flag lists"
+    command:
+      name: "<white>Command rules</white>"
+      desc: "Allow or block commands inside a residence"
+    padd:
+      name: "<white>Add member</white>"
+      desc: "Give a player trusted access"
+    pdel:
+      name: "<white>Remove member</white>"
+      desc: "Remove a player from a residence"
+    give:
+      name: "<white>Transfer</white>"
+      desc: "Transfer ownership to another player"
+    rename:
+      name: "<white>Rename</white>"
+      desc: "Change the residence name"
+    renamearea:
+      name: "<white>Rename area</white>"
+      desc: "Rename a physical area inside a residence"
+    setmain:
+      name: "<white>Set main</white>"
+      desc: "Set a residence as your main residence"
+    kick:
+      name: "<white>Kick</white>"
+      desc: "Kick a player out of your residence"
+    select:
+      name: "<white>Selection</white>"
+      desc: "Selection tools and options"
+    expand:
+      name: "<white>Expand</white>"
+      desc: "Expand a residence in the direction you look"
+    contract:
+      name: "<white>Contract</white>"
+      desc: "Shrink a residence in the direction you look"
+    subzone:
+      name: "<white>Create subzone</white>"
+      desc: "Create a subzone from your selection"
+    sublist:
+      name: "<white>Subzones</white>"
+      desc: "List the subzones of a residence"
+    area:
+      name: "<white>Physical areas</white>"
+      desc: "Manage the physical areas of a residence"
+    lset:
+      name: "<white>Item lists</white>"
+      desc: "Manage item blacklists and ignorelists"
+    tpset:
+      name: "<white>Teleport point</white>"
+      desc: "Set the teleport point to where you stand"
+    tp:
+      name: "<white>Teleport</white>"
+      desc: "Teleport to a residence"
+    tpconfirm:
+      name: "<white>Confirm teleport</white>"
+      desc: "Confirm an unsafe teleport"
+    compass:
+      name: "<white>Compass</white>"
+      desc: "Point your compass at a residence"
+    rt:
+      name: "<white>Random teleport</white>"
+      desc: "Random teleport in a configured world"
+    unstuck:
+      name: "<white>Unstuck</white>"
+      desc: "Teleport outside the residence you are stuck in"
+    market:
+      name: "<white>Market</white>"
+      desc: "Residence rental and sale market"
+    bank:
+      name: "<white>Bank</white>"
+      desc: "Deposit, withdraw or check the residence bank"
+    shop:
+      name: "<white>Shop</white>"
+      desc: "Residence shop listings and voting"
+    lease:
+      name: "<white>Lease</white>"
+      desc: "Lease renewal and information"
+    attack:
+      name: "<white>Attack</white>"
+      desc: "Start or join a raid"
+    defend:
+      name: "<white>Defend</white>"
+      desc: "Join the defence of a raided residence"
+    raidstatus:
+      name: "<white>Raid status</white>"
+      desc: "Show the raid status of a residence"
+    leaveraid:
+      name: "<white>Leave raid</white>"
+      desc: "Leave the raid you joined"
+    raid:
+      name: "<white>Raid control</white>"
+      desc: "Administrative raid control"
+    rc:
+      name: "<white>Residence chat</white>"
+      desc: "Join, leave or configure residence chat"
+    message:
+      name: "<white>Messages</white>"
+      desc: "Set or remove enter and leave messages"
+    resadmin:
+      name: "<white>Admin mode</white>"
+      desc: "Toggle your Residence admin mode"
+    server:
+      name: "<white>Server owned</white>"
+      desc: "Make a residence server owned"
+    setowner:
+      name: "<white>Set owner</white>"
+      desc: "Change the owner of a residence"
+    setallowner:
+      name: "<white>Set all owners</white>"
+      desc: "Transfer every residence of a player"
+    clearflags:
+      name: "<white>Clear flags</white>"
+      desc: "Remove every flag from a residence"
+    save:
+      name: "<white>Save</white>"
+      desc: "Save a residence schematic"
+    restore:
+      name: "<white>Restore</white>"
+      desc: "Restore a residence schematic"
+    listhidden:
+      name: "<white>Hidden residences</white>"
+      desc: "List hidden residences"
+    listallhidden:
+      name: "<white>All hidden residences</white>"
+      desc: "List every hidden residence"
+    reload:
+      name: "<white>Reload</white>"
+      desc: "Reload the plugin configuration files"
+    signupdate:
+      name: "<white>Update signs</white>"
+      desc: "Refresh all residence signs"
+    signconvert:
+      name: "<white>Convert signs</white>"
+      desc: "Convert signs from the old plugin"
+    version:
+      name: "<white>Version</white>"
+      desc: "Show the Residence version"
+    remove:
+      name: "<red>Delete residence</red>"
+      desc: "Delete a residence"
+    removeall:
+      name: "<red>Delete all</red>"
+      desc: "Delete every residence of a player"
+    removeworld:
+      name: "<red>Delete world</red>"
+      desc: "Delete every residence in a world"
+
+  # -------------------------------------------------------------------------
+  # Argument labels, key is menu.arg.<command>.<label>
+  # -------------------------------------------------------------------------
+  arg:
+    value: "<white>Value</white>"
+    state: "<white>State</white>"
+    residence: "<white>Residence</white>"
+    player: "<white>Player</white>"
+    flag: "<white>Flag</white>"
+    group: "<white>Group</white>"
+    world: "<white>World</white>"
+    page: "<white>Page</white>"
+    radius: "<white>Radius</white>"
+    amount: "<white>Amount</white>"
+    action: "<white>Action</white>"
+    type: "<white>Type</white>"
+    "new_name": "<white>New name</white>"
+    "old_area_name": "<white>Old area name</white>"
+    "new_area_name": "<white>New area name</white>"
+    "subzone_name": "<white>Subzone name</white>"
+    "area_name": "<white>Area name</white>"
+    material: "<white>Material</white>"
+    message: "<white>Message</white>"
+    "residence_name": "<white>Residence name</white>"
+    command: "<white>Command</white>"
+
+  # -------------------------------------------------------------------------
+  # Actions of the residence screen
+  # -------------------------------------------------------------------------
+  residence:
+    set:
+      name: "<white>Residence flags</white>"
+      lore: "Open the flag editor of this residence"
+    pset:
+      name: "<white>Player flags</white>"
+      lore: "Set flags for a specific player"
+    info:
+      name: "<white>Information</white>"
+      lore: "Show the full residence information"
+    tp:
+      name: "<green>Teleport here</green>"
+      lore: "Teleport to this residence"
+    tpset:
+      name: "<green>Set teleport point</green>"
+      lore: "Set the teleport point to your location"
+    show:
+      name: "<aqua>Show borders</aqua>"
+      lore: "Visualise the residence borders"
+    sublist:
+      name: "<aqua>Subzones</aqua>"
+      lore: "List the subzones of this residence"
+    area:
+      name: "<aqua>Physical areas</aqua>"
+      lore: "List the physical areas"
+    expand:
+      name: "<aqua>Expand</aqua>"
+      lore: "Expand in the direction you look"
+    contract:
+      name: "<aqua>Contract</aqua>"
+      lore: "Shrink in the direction you look"
+    padd:
+      name: "<green>Add member</green>"
+      lore: "Give a player trusted access"
+    pdel:
+      name: "<red>Remove member</red>"
+      lore: "Remove a player from this residence"
+    command:
+      name: "<aqua>Command rules</aqua>"
+      lore: "Allow or block commands inside"
+    lset:
+      name: "<aqua>Item lists</aqua>"
+      lore: "Item blacklist and ignorelist"
+    rename:
+      name: "<yellow>Rename</yellow>"
+      lore: "Change the residence name"
+    reset:
+      name: "<red>Reset flags</red>"
+      lore: "Reset every flag to the defaults"
+    remove:
+      name: "<red><bold>Delete residence</bold></red>"
+      lore: "<red>Deletes this residence, cannot be undone</red>"
+    unavailable: "<gray>Not available in this version</gray>"
+
+  # -------------------------------------------------------------------------
+  # Confirmation screen
+  # -------------------------------------------------------------------------
+  confirm:
+    preview: "<yellow>{line}</yellow>"
+    preview-lore: "<gray>This is what will run</gray>"
+    no-arguments: "<gray>No arguments</gray>"
+    argument: "<gray>Argument {index}: <white>{value}</white></gray>"
+
+  # -------------------------------------------------------------------------
+  # Language picker
+  # -------------------------------------------------------------------------
+  language:
+    zh_cn:
+      name: "简体中文"
+      lore: "<gray>Chinese (Simplified)</gray>"
+    en_us:
+      name: "English"
+      lore: "<gray>English (United States)</gray>"
+    selected: "<green>Currently selected</green>"
+
+  # -------------------------------------------------------------------------
+  # Bedrock form content ({total} entries, {page}/{pages} when paginated)
+  # -------------------------------------------------------------------------
+  form:
+    main: "Pick a chapter to manage your residences"
+    chapter: "{count} command(s), tap one to start"
+    residence: "Residence {residence}\nOwner {owner}\nWorld {world}"
+    residence-missing: "This residence no longer exists"
+    standing-in: "You are standing in {residence}"
+    not-in-residence: "You are not standing in a residence"
+    argument: "Step {step}/{steps}: choose {label}"
+    confirm: "Will run: {line}"
+    confirm-danger: "Careful: this cannot be undone!"
+    language: "Pick the menu language, the change applies immediately"
+    page: "Page {page}/{pages}"
+    selected-marker: "✔ "
+
+  # -------------------------------------------------------------------------
+  # Chat prompts and messages
+  # -------------------------------------------------------------------------
+  prompt:
+    chat-input: "<yellow>Type {label} for {command} in chat, or type cancel to abort:</yellow>"
+    cancel: "cancel"
+    suggest: "<gray>The command is in your chat box, edit it and press enter</gray>"
+
+  message:
+    disabled: "<red>The Residence menu is disabled on this server</red>"
+    unknown-command: "<red>Unknown command <white>{command}</white>, it is not part of the menu</red>"
+    input-cancelled: "<yellow>Input cancelled</yellow>"
+    input-empty: "<red>Please type a value, or type cancel to abort</red>"
+    dispatch-failed: "<red>The command could not run: <white>{command}</white></red>"
+    join: "<gray>Open the residence menu with <click:run_command:'/res menu'><hover:show_text:'<gray>Open the Residence menu</gray>'><gold>/res menu</gold></hover></click></gray>"
+    join-bedrock: "<gray>Use <click:run_command:'/res menu'><gold>/res menu</gold></click> for a form that is easier to use on Bedrock</gray>"
+
+  # Words that abort a chat input, also used on Bedrock
+  cancel-words:
+    - "cancel"
+    - "cancelar"
+    - "取消"
+
+  # -------------------------------------------------------------------------
+  # /res menu check output
+  # -------------------------------------------------------------------------
+  check:
+    title: "<gold><bold>Residence menu language check</bold></gold>"
+    active: "<gray>Active language: <white>{language}</white> (client: <white>{detected}</white>)</gray>"
+    default: "<gray>Default language: <white>{language}</white></gray>"
+    available: "<gray>Loaded languages: <white>{languages}</white></gray>"
+    missing-title: "<yellow>{language} is missing {count} key(s):</yellow>"
+    missing-more: "<dark_gray>... and {count} more</dark_gray>"
+    missing-entry: "<dark_gray>  · {key}</dark_gray>"
+    runtime-title: "<yellow>Keys not found at runtime: {count}</yellow>"

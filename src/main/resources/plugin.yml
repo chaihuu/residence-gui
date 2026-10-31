@@ -186,6 +186,9 @@ permissions:
   residence.command.lset:
     description: Allows to access particular command
     default: true
+  residence.command.menu:
+    description: Allows opening the Residence menu
+    default: true
   residence.command.market:
     description: Allows to access particular command
     default: true

@@ -1,0 +1,759 @@
+# ============================================================================
+#  Residence 菜单语言文件 - 简体中文 (zh_CN)
+# ----------------------------------------------------------------------------
+#  所有文本使用 MiniMessage 标签，禁止使用旧版 & 颜色代码：
+#    <gray>灰色</gray>  <gold>金色</gold>  <gradient:#ff5555:#ffaa00>渐变</gradient>
+#    <bold>粗体</bold>  <italic>斜体</italic>  <underlined>下划线</underlined>
+#  花括号 {xxx} 是占位符，例如 {player}、{residence}、{page}。
+#  缺失的键会按顺序回退：玩家语言 -> Default 语言 -> 内置资源 -> 显示键名。
+#  修改后执行 /res reload lang 立即生效，两套 UI（箱子菜单 / 基岩版表单）同时生效。
+# ============================================================================
+
+# ---------------------------------------------------------------------------
+# 视觉样式：箱子菜单与基岩表单共用，保证两套 UI 风格一致
+# ---------------------------------------------------------------------------
+menu:
+  style:
+    # 菜单名称，显示在标题最前面
+    brand: "<gold><bold>Residence</bold></gold>"
+    # 标题分隔符，例如 "Residence > 领地" 中的 ">"
+    separator: "<dark_gray>»</dark_gray>"
+    # 标题模板：{brand} = 菜单名，{separator} = 分隔符，{path} = 当前页面
+    title: "{brand}<reset> <gray>菜单</gray>"
+    title-page: " <dark_gray>[</dark_gray><gray>{page}</gray><dark_gray>/</dark_gray><gray>{pages}</gray><dark_gray>]</dark_gray>"
+    # 说明文字的默认颜色
+    description-colour: "<gray>"
+    # 操作提示的默认颜色
+    hints-colour: "<dark_gray>"
+    # 操作提示前的圆点
+    bullet: "•"
+    # 说明与提示之间的分隔空行（保持为空格即可）
+    blank-line: " "
+    # 说明文字自动换行宽度（Java 版）
+    wrap-width: "52"
+    # 说明文字自动换行宽度（基岩版表单更窄）
+    wrap-width-bedrock: "42"
+    # 边框填充物品的名称与说明（显示为装饰，无功能）
+    filler-name: "<dark_gray> </dark_gray>"
+    filler-lore:
+      - "<dark_gray> "
+    # 不可用按钮（如上一页不可用时）使用的材质
+    disabled-material: "GRAY_STAINED_GLASS_PANE"
+
+  # -------------------------------------------------------------------------
+  # 页面标题（{target} = 页面目标，例如章节名或领地名）
+  # -------------------------------------------------------------------------
+  title:
+    root: ""
+    chapter: "{chapter}"
+    residence: "<gold>{target}</gold>"
+    argument: "<gold>{command}</gold> <dark_gray>·</dark_gray> <gray>第 {step}/{steps} 步</gray>"
+    confirm: "<gold>确认执行</gold>"
+    language: "<aqua>界面语言</aqua>"
+
+  # -------------------------------------------------------------------------
+  # 根菜单章节条目
+  # -------------------------------------------------------------------------
+  chapter:
+    general:
+      name: "<white>常规</white>"
+      lore: "领地概览、信息查询与创建"
+    flags:
+      name: "<white>旗帜设置</white>"
+      lore: "修改领地旗帜与玩家旗帜"
+    ownership:
+      name: "<white>所有者</white>"
+      lore: "转让、重命名与成员管理"
+    areas:
+      name: "<white>选区与区域</white>"
+      lore: "选择范围、调整大小、子区域与物理区域"
+    teleport:
+      name: "<white>传送</white>"
+      lore: "传送到领地或从中脱困"
+    economy:
+      name: "<white>经济</white>"
+      lore: "市场、金库、商店与租约"
+    raid:
+      name: "<white>袭击</white>"
+      lore: "发起袭击、协防与状态查询"
+    chat:
+      name: "<white>聊天与消息</white>"
+      lore: "领地聊天与进入/离开消息"
+    admin:
+      name: "<white>管理员</white>"
+      lore: "服务器管理命令"
+    danger:
+      name: "<white>危险操作</white>"
+      lore: "不可撤销的破坏性操作，请谨慎使用"
+    # 每个章节显示的条目数量
+    count: "<dark_gray>{count} 个命令</dark_gray>"
+
+  # -------------------------------------------------------------------------
+  # 按钮（可被 config.yml 的 Layout.Buttons 覆盖材质/槽位）
+  # -------------------------------------------------------------------------
+  button:
+    previous:
+      name: "<green>上一页</green>"
+      disabled-name: "<dark_gray>已是第一页</dark_gray>"
+      lore:
+        - "<gray>翻到第 {page}/{pages} 页</gray>"
+        - ""
+        - "<dark_gray>• 左键 翻页</dark_gray>"
+    next:
+      name: "<green>下一页</green>"
+      disabled-name: "<dark_gray>已是最后一页</dark_gray>"
+      lore:
+        - "<gray>翻到第 {page}/{pages} 页</gray>"
+        - ""
+        - "<dark_gray>• 左键 翻页</dark_gray>"
+    page_indicator:
+      name: "<gold>{page}</gold> <dark_gray>/</dark_gray> <gray>{pages}</gray>"
+      lore:
+        - "<gray>当前页：{page}/{pages}</gray>"
+    back:
+      name: "<yellow>返回</yellow>"
+      lore:
+        - "<gray>回到上一级菜单</gray>"
+        - ""
+        - "<dark_gray>• 左键 返回</dark_gray>"
+    close:
+      name: "<red>关闭</red>"
+      lore:
+        - "<gray>关闭菜单</gray>"
+        - ""
+        - "<dark_gray>• 左键 关闭</dark_gray>"
+    info:
+      name: "<aqua>信息</aqua>"
+      lore:
+        - "<gray>关于当前页面的说明</gray>"
+    language:
+      name: "<aqua>界面语言</aqua>"
+      lore:
+        - "<gray>当前语言：<white>{languageName}</white></gray>"
+        - ""
+        - "<dark_gray>• 左键 切换语言</dark_gray>"
+    language_entry:
+      name: "<white>{languageName}</white>"
+    current_residence:
+      name: "<green>{residence}</green>"
+      lore:
+        - "<gray>所有者：<white>{owner}</white></gray>"
+        - "<dark_gray>你正站在此领地中</dark_gray>"
+        - ""
+        - "<dark_gray>• 左键 管理此领地</dark_gray>"
+    current_residence_empty:
+      name: "<gray>当前没有领地</gray>"
+      lore:
+        - "<gray>走到领地范围内即可在此管理</gray>"
+    quick_flags:
+      name: "<yellow>快速旗帜编辑</yellow>"
+      lore:
+        - "<gray>打开你所在领地的旗帜设置</gray>"
+        - ""
+        - "<dark_gray>• 左键 打开</dark_gray>"
+    residence_list:
+      name: "<aqua>领地列表</aqua>"
+      lore:
+        - "<gray>查看你拥有的全部领地</gray>"
+        - ""
+        - "<dark_gray>• 左键 查看</dark_gray>"
+    confirm:
+      name: "<green>确认执行</green>"
+      lore:
+        - "<gray>立即执行命令：</gray>"
+        - "<white>{line}</white>"
+        - ""
+        - "<dark_gray>• 左键 确认</dark_gray>"
+    confirm_danger:
+      name: "<red><bold>确认执行（危险）</bold></red>"
+      lore:
+        - "<red>此操作不可撤销！</red>"
+        - "<white>{line}</white>"
+        - ""
+        - "<dark_gray>• 左键 确认</dark_gray>"
+    cancel:
+      name: "<red>取消</red>"
+      lore:
+        - "<gray>不执行此命令</gray>"
+    command_preview:
+      name: "<yellow>命令预览</yellow>"
+      lore:
+        - "<gray>将要执行的完整命令：</gray>"
+        - "<white>{line}</white>"
+    type_in_chat:
+      name: "<yellow>在聊天框中输入</yellow>"
+      lore:
+        - "<gray>用键盘输入<white>{label}</white>，输入设备均可</gray>"
+        - ""
+        - "<dark_gray>• 左键 开始输入</dark_gray>"
+    type_manually:
+      name: "<gray>自己输入命令</gray>"
+      lore:
+        - "<gray>关闭菜单并将命令填入聊天框</gray>"
+        - "<dark_gray>{line}</dark_gray>"
+    value_minus:
+      name: "<red>- {step}</red>"
+      lore:
+        - "<gray>减少 <white>{step}</white></gray>"
+        - ""
+        - "<dark_gray>• 左键 减少</dark_gray>"
+    value_plus:
+      name: "<green>+ {step}</green>"
+      lore:
+        - "<gray>增加 <white>{step}</white></gray>"
+        - ""
+        - "<dark_gray>• 左键 增加</dark_gray>"
+    value_current:
+      name: "<gold>{value}</gold>"
+      lore:
+        - "<gray>最小值：<white>{min}</white></gray>"
+        - "<gray>最大值：<white>{max}</white></gray>"
+    value_use:
+      name: "<green>使用 {value}</green>"
+      lore:
+        - "<gray>以该数值继续</gray>"
+        - ""
+        - "<dark_gray>• 左键 使用</dark_gray>"
+
+  # -------------------------------------------------------------------------
+  # 空状态占位物品
+  # -------------------------------------------------------------------------
+  empty:
+    residence:
+      name: "<gray>没有可用的领地</gray>"
+      lore:
+        - "<gray>你还没有领地，或没有权限操作任何领地</gray>"
+    player:
+      name: "<gray>没有其他在线玩家</gray>"
+      lore:
+        - "<gray>当前没有其他玩家在线</gray>"
+    member:
+      name: "<gray>没有成员</gray>"
+      lore:
+        - "<gray>此领地还没有添加其他玩家</gray>"
+    flag:
+      name: "<gray>没有可用旗帜</gray>"
+      lore:
+        - "<gray>你没有权限修改任何旗帜</gray>"
+    group:
+      name: "<gray>没有权限组</gray>"
+      lore:
+        - "<gray>groups.yml 中没有可用权限组</gray>"
+    world:
+      name: "<gray>没有世界</gray>"
+      lore:
+        - "<gray>服务器没有加载任何世界</gray>"
+    choice:
+      name: "<gray>没有可选项</gray>"
+      lore:
+        - "<gray>此参数没有可选的选项</gray>"
+    section:
+      name: "<gray>这里空空如也</gray>"
+      lore:
+        - "<gray>当前页面没有内容</gray>"
+    action:
+      name: "<gray>没有可用操作</gray>"
+      lore:
+        - "<gray>你没有权限执行此处的操作</gray>"
+
+  # -------------------------------------------------------------------------
+  # 操作提示（hover lore 底部）
+  # -------------------------------------------------------------------------
+  hint:
+    left_click: "<dark_gray>左键</dark_gray> <gray>选择</gray>"
+    right_click: "<dark_gray>右键</dark_gray> <gray>查看详情</gray>"
+    shift_click: "<dark_gray>Shift+左键</dark_gray> <gray>快速操作</gray>"
+    middle_click: "<dark_gray>中键</dark_gray> <gray>复制</gray>"
+    selected: "<dark_gray>当前选中</dark_gray>"
+
+  # -------------------------------------------------------------------------
+  # 列表条目
+  # -------------------------------------------------------------------------
+  item:
+    residence:
+      owner: "<gray>所有者：<white>{owner}</white></gray>"
+      world: "<gray>世界：<white>{world}</white></gray>"
+      subzones: "<gray>子区域：<white>{subzones}</white></gray>"
+      for-rent: "<green>可出租</green>"
+      for-sale: "<green>可出售</green>"
+      here: "<aqua>你正站在这里</aqua>"
+    player:
+      world: "<gray>所在世界：<white>{world}</white></gray>"
+    flag:
+      desc: "<gray>{desc}</gray>"
+      mode: "<gray>适用范围：<white>{mode}</white></gray>"
+    world:
+      players: "<gray>在线玩家：<white>{players}</white></gray>"
+    choice:
+      value: "<gray>取值：<white>{value}</white></gray>"
+    state:
+      desc: "<gray>旗帜状态</gray>"
+
+  # -------------------------------------------------------------------------
+  # 参数、状态与选项
+  # -------------------------------------------------------------------------
+  argument:
+    skip: "<gray>（跳过此项）</gray>"
+    skip-lore: "<gray>不填写此可选参数，直接继续</gray>"
+    number-value: "<aqua>{value}</aqua>"
+    number-value-lore: "<gray>将数值设为 <white>{value}</white></gray>"
+
+  state:
+    "true": "<green>开启</green>"
+    "false": "<red>关闭</red>"
+    remove: "<gray>移除</gray>"
+
+  choice:
+    list: "<white>列表</white>"
+    add: "<green>添加</green>"
+    remove: "<red>移除</red>"
+    apply: "<aqua>应用</aqua>"
+    set: "<white>设置</white>"
+    pset: "<white>玩家设置</white>"
+    gset: "<white>权限组设置</white>"
+    view: "<white>查看</white>"
+    allow: "<green>允许</green>"
+    block: "<red>禁止</red>"
+    sell: "<green>出售</green>"
+    unsell: "<gray>取消出售</gray>"
+    buy: "<green>购买</green>"
+    rent: "<aqua>租用</aqua>"
+    rentable: "<aqua>设为可租</aqua>"
+    autopay: "<aqua>自动续费</aqua>"
+    payrent: "<aqua>支付租金</aqua>"
+    release: "<red>释放</red>"
+    unrent: "<red>取消租用</red>"
+    sign: "<white>告示牌</white>"
+    confirm: "<gold>确认</gold>"
+    balance: "<gold>余额</gold>"
+    deposit: "<green>存入</green>"
+    withdraw: "<red>取出</red>"
+    vote: "<green>点赞</green>"
+    like: "<green>喜欢</green>"
+    votes: "<gray>点赞数</gray>"
+    likes: "<gray>喜欢数</gray>"
+    setdesc: "<white>设置描述</white>"
+    createboard: "<white>创建排行榜</white>"
+    deleteboard: "<red>删除排行榜</red>"
+    cost: "<gold>费用</gold>"
+    renew: "<green>续期</green>"
+    expires: "<gray>到期时间</gray>"
+    start: "<green>开始</green>"
+    stop: "<red>停止</red>"
+    kick: "<red>踢出</red>"
+    immunity: "<aqua>免疫</aqua>"
+    take: "<red>扣除</red>"
+    clear: "<gray>清空</gray>"
+    join: "<green>加入</green>"
+    leave: "<red>离开</red>"
+    setcolor: "<aqua>设置颜色</aqua>"
+    setprefix: "<aqua>设置前缀</aqua>"
+    enter: "<green>进入</green>"
+    on: "<green>开启</green>"
+    off: "<red>关闭</red>"
+    coords: "<white>坐标</white>"
+    size: "<white>大小</white>"
+    vert: "<white>垂直</white>"
+    sky: "<white>天空</white>"
+    bedrock: "<white>基岩</white>"
+    expand: "<white>扩展</white>"
+    shift: "<white>平移</white>"
+    chunk: "<white>区块</white>"
+    residence: "<white>领地</white>"
+    worldedit: "<white>WorldEdit</white>"
+    options: "<white>选项</white>"
+    outward: "<white>向外</white>"
+    listall: "<white>全部列表</white>"
+    blacklist: "<red>黑名单</red>"
+    ignorelist: "<gray>忽略列表</gray>"
+    info: "<aqua>信息</aqua>"
+    replace: "<white>替换</white>"
+    config: "<white>配置</white>"
+    lang: "<white>语言</white>"
+    groups: "<white>权限组</white>"
+    flags: "<white>旗帜</white>"
+
+  flagmode:
+    residence: "<white>领地</white>"
+    player: "<white>玩家</white>"
+    both: "<white>领地与玩家</white>"
+
+  # -------------------------------------------------------------------------
+  # 命令名称与描述（{command} = 命令内部名称）
+  # -------------------------------------------------------------------------
+  command:
+    flag:
+      dangerous: "<red>此命令不可撤销</red>"
+      admin: "<gold>管理员命令</gold>"
+      chat: "<aqua>推荐在聊天框中使用</aqua>"
+      no-permission: "<red>你没有使用此命令的权限</red>"
+    info:
+      name: "<white>领地信息</white>"
+      desc: "查看领地的详细信息"
+    current:
+      name: "<white>当前领地</white>"
+      desc: "显示你当前所在的领地"
+    list:
+      name: "<white>领地列表</white>"
+      desc: "列出某位玩家拥有的领地"
+    listall:
+      name: "<white>全部领地</white>"
+      desc: "列出服务器上的所有领地"
+    limits:
+      name: "<white>权限限制</white>"
+      desc: "查看你的权限组限制"
+    show:
+      name: "<white>显示边界</white>"
+      desc: "显示领地边界"
+    tool:
+      name: "<white>工具物品</white>"
+      desc: "获取选区与信息工具"
+    create:
+      name: "<white>创建领地</white>"
+      desc: "用当前选区创建领地"
+    auto:
+      name: "<white>自动创建</white>"
+      desc: "自动确定选区大小并创建领地"
+    check:
+      name: "<white>检查旗帜</white>"
+      desc: "检查某位玩家在领地中的旗帜状态"
+    material:
+      name: "<white>查询材质</white>"
+      desc: "查询物品材质名称"
+    placeholders:
+      name: "<white>占位符</white>"
+      desc: "列出可用的 PlaceholderAPI 占位符"
+    confirm:
+      name: "<white>确认删除</white>"
+      desc: "确认待处理的领地删除"
+    set:
+      name: "<white>领地旗帜</white>"
+      desc: "打开领地旗帜编辑器"
+    pset:
+      name: "<white>玩家旗帜</white>"
+      desc: "为某个玩家设置旗帜"
+    flags:
+      name: "<white>旗帜列表</white>"
+      desc: "列出所有可用旗帜"
+    gset:
+      name: "<white>权限组旗帜</white>"
+      desc: "为权限组设置旗帜"
+    setall:
+      name: "<white>批量设置</white>"
+      desc: "为你拥有的所有领地设置旗帜"
+    setallfor:
+      name: "<white>批量设置(玩家)</white>"
+      desc: "为某位玩家的所有领地设置旗帜"
+    mirror:
+      name: "<white>复制旗帜</white>"
+      desc: "将一个领地的旗帜复制到另一个"
+    pmirror:
+      name: "<white>复制玩家旗帜</white>"
+      desc: "将玩家旗帜复制到另一位玩家"
+    reset:
+      name: "<white>重置旗帜</white>"
+      desc: "将领地旗帜重置为默认值"
+    lists:
+      name: "<white>旗帜预设</white>"
+      desc: "应用或编辑预设旗帜列表"
+    command:
+      name: "<white>命令规则</white>"
+      desc: "管理领地内允许与禁止的命令"
+    padd:
+      name: "<white>添加成员</white>"
+      desc: "给予玩家可信访问权限"
+    pdel:
+      name: "<white>移除成员</white>"
+      desc: "将玩家移出领地"
+    give:
+      name: "<white>转让领地</white>"
+      desc: "将领地转让给另一位玩家"
+    rename:
+      name: "<white>重命名</white>"
+      desc: "更改领地名称"
+    renamearea:
+      name: "<white>重命名区域</white>"
+      desc: "重命名领地内的物理区域"
+    setmain:
+      name: "<white>设为主领地</white>"
+      desc: "将此领地设为你的主领地"
+    kick:
+      name: "<white>踢出</white>"
+      desc: "将玩家踢出你的领地"
+    select:
+      name: "<white>选区工具</white>"
+      desc: "选区工具与选项"
+    expand:
+      name: "<white>扩展</white>"
+      desc: "向你面朝的方向扩展领地"
+    contract:
+      name: "<white>收缩</white>"
+      desc: "向你面朝的方向缩小领地"
+    subzone:
+      name: "<white>创建子区域</white>"
+      desc: "用当前选区创建子区域"
+    sublist:
+      name: "<white>子区域列表</white>"
+      desc: "列出领地的子区域"
+    area:
+      name: "<white>物理区域</white>"
+      desc: "管理领地的物理区域"
+    lset:
+      name: "<white>物品列表</white>"
+      desc: "管理物品黑名单与忽略列表"
+    tpset:
+      name: "<white>传送点</white>"
+      desc: "将领地传送点设为你所在位置"
+    tp:
+      name: "<white>传送</white>"
+      desc: "传送到领地"
+    tpconfirm:
+      name: "<white>确认传送</white>"
+      desc: "确认不安全的传送"
+    compass:
+      name: "<white>指南针</white>"
+      desc: "让指南针指向领地"
+    rt:
+      name: "<white>随机传送</white>"
+      desc: "在指定世界中随机传送"
+    unstuck:
+      name: "<white>脱困</white>"
+      desc: "传送到你卡住领地之外"
+    market:
+      name: "<white>市场</white>"
+      desc: "领地租赁与出售市场"
+    bank:
+      name: "<white>金库</white>"
+      desc: "存入、取出或查看领地金库"
+    shop:
+      name: "<white>商店</white>"
+      desc: "领地商店列表与投票"
+    lease:
+      name: "<white>租约</white>"
+      desc: "租约续期与信息"
+    attack:
+      name: "<white>发起袭击</white>"
+      desc: "发起或加入袭击"
+    defend:
+      name: "<white>协防</white>"
+      desc: "参与被袭击领地的防守"
+    raidstatus:
+      name: "<white>袭击状态</white>"
+      desc: "查看领地的袭击状态"
+    leaveraid:
+      name: "<white>退出袭击</white>"
+      desc: "退出你加入的袭击"
+    raid:
+      name: "<white>袭击管理</white>"
+      desc: "管理员袭击控制"
+    rc:
+      name: "<white>领地聊天</white>"
+      desc: "加入、离开或配置领地聊天"
+    message:
+      name: "<white>消息设置</white>"
+      desc: "设置或移除进入/离开消息"
+    resadmin:
+      name: "<white>管理权限</white>"
+      desc: "切换你的 Residence 管理员模式"
+    server:
+      name: "<white>服务器领地</white>"
+      desc: "将领地设为服务器所有"
+    setowner:
+      name: "<white>更换所有者</white>"
+      desc: "更改领地的所有者"
+    setallowner:
+      name: "<white>批量更换所有者</white>"
+      desc: "转让某位玩家的所有领地"
+    clearflags:
+      name: "<white>清空旗帜</white>"
+      desc: "移除领地的所有旗帜"
+    save:
+      name: "<white>保存</white>"
+      desc: "保存领地结构文件"
+    restore:
+      name: "<white>恢复</white>"
+      desc: "恢复领地结构文件"
+    listhidden:
+      name: "<white>隐藏领地列表</white>"
+      desc: "列出隐藏的领地"
+    listallhidden:
+      name: "<white>全部隐藏领地</white>"
+      desc: "列出所有隐藏领地"
+    reload:
+      name: "<white>重载</white>"
+      desc: "重载插件配置文件"
+    signupdate:
+      name: "<white>更新告示牌</white>"
+      desc: "刷新所有领地告示牌"
+    signconvert:
+      name: "<white>转换告示牌</white>"
+      desc: "转换旧版插件的告示牌"
+    version:
+      name: "<white>版本</white>"
+      desc: "显示 Residence 版本"
+    remove:
+      name: "<red>删除领地</red>"
+      desc: "删除一个领地"
+    removeall:
+      name: "<red>删除全部领地</red>"
+      desc: "删除某位玩家的所有领地"
+    removeworld:
+      name: "<red>删除世界领地</red>"
+      desc: "删除某个世界中的所有领地"
+
+  # -------------------------------------------------------------------------
+  # 参数名称与说明 key 为 menu.arg.<命令名>.<参数标识>
+  # -------------------------------------------------------------------------
+  arg:
+    value: "<white>数值</white>"
+    state: "<white>状态</white>"
+    residence: "<white>领地</white>"
+    player: "<white>玩家</white>"
+    flag: "<white>旗帜</white>"
+    group: "<white>权限组</white>"
+    world: "<white>世界</white>"
+    page: "<white>页码</white>"
+    radius: "<white>半径</white>"
+    amount: "<white>数量</white>"
+    action: "<white>操作</white>"
+    type: "<white>类型</white>"
+    "new_name": "<white>新名称</white>"
+    "old_area_name": "<white>原区域名称</white>"
+    "new_area_name": "<white>新区域名称</white>"
+    "subzone_name": "<white>子区域名称</white>"
+    "area_name": "<white>区域名称</white>"
+    material: "<white>材质</white>"
+    message: "<white>消息</white>"
+    "residence_name": "<white>领地名称</white>"
+    command: "<white>命令</white>"
+
+  # -------------------------------------------------------------------------
+  # 领地页面操作
+  # -------------------------------------------------------------------------
+  residence:
+    set:
+      name: "<white>旗帜设置</white>"
+      lore: "打开此领地的旗帜编辑器"
+    pset:
+      name: "<white>玩家旗帜</white>"
+      lore: "为指定玩家设置旗帜"
+    info:
+      name: "<white>领地信息</white>"
+      lore: "查看完整领地信息"
+    tp:
+      name: "<green>传送过去</green>"
+      lore: "传送到此领地"
+    tpset:
+      name: "<green>设置传送点</green>"
+      lore: "将传送点设为你所在位置"
+    show:
+      name: "<aqua>显示边界</aqua>"
+      lore: "可视化领地边界"
+    sublist:
+      name: "<aqua>子区域</aqua>"
+      lore: "列出此领地的子区域"
+    area:
+      name: "<aqua>物理区域</aqua>"
+      lore: "列出物理区域"
+    expand:
+      name: "<aqua>扩展</aqua>"
+      lore: "向你面朝的方向扩展"
+    contract:
+      name: "<aqua>收缩</aqua>"
+      lore: "向你面朝的方向缩小"
+    padd:
+      name: "<green>添加成员</green>"
+      lore: "给予玩家可信访问权限"
+    pdel:
+      name: "<red>移除成员</red>"
+      lore: "将玩家移出此领地"
+    command:
+      name: "<aqua>命令规则</aqua>"
+      lore: "允许或禁止领地内的命令"
+    lset:
+      name: "<aqua>物品列表</aqua>"
+      lore: "物品黑名单与忽略列表"
+    rename:
+      name: "<yellow>重命名</yellow>"
+      lore: "更改领地名称"
+    reset:
+      name: "<red>重置旗帜</red>"
+      lore: "将所有旗帜重置为默认值"
+    remove:
+      name: "<red><bold>删除领地</bold></red>"
+      lore: "<red>删除此领地，无法恢复</red>"
+    unavailable: "<gray>当前版本不可用</gray>"
+
+  # -------------------------------------------------------------------------
+  # 确认页面
+  # -------------------------------------------------------------------------
+  confirm:
+    preview: "<yellow>{line}</yellow>"
+    preview-lore: "<gray>即将执行的命令</gray>"
+    no-arguments: "<gray>无需参数</gray>"
+    argument: "<gray>参数 {index}：<white>{value}</white></gray>"
+
+  # -------------------------------------------------------------------------
+  # 语言切换
+  # -------------------------------------------------------------------------
+  language:
+    zh_cn:
+      name: "简体中文"
+      lore: "<gray>Chinese (Simplified)</gray>"
+    en_us:
+      name: "English"
+      lore: "<gray>英语（美国）</gray>"
+    selected: "<green>当前语言</green>"
+
+  # -------------------------------------------------------------------------
+  # 基岩版表单内容（{total} 条目数，{page}/{pages} 页码）
+  # -------------------------------------------------------------------------
+  form:
+    main: "选择一个章节开始管理领地"
+    chapter: "共 {count} 个命令，点击任意一项开始"
+    residence: "领地 {residence}\n所有者 {owner}\n世界 {world}"
+    residence-missing: "此领地已不存在"
+    standing-in: "你正站在 {residence} 中"
+    not-in-residence: "你当前不在任何领地中"
+    argument: "第 {step}/{steps} 步：请选择 {label}"
+    confirm: "即将执行：{line}"
+    confirm-danger: "注意：此操作无法撤销！"
+    language: "选择界面语言，切换后立即生效"
+    page: "第 {page}/{pages} 页"
+    selected-marker: "✔ "
+
+  # -------------------------------------------------------------------------
+  # 聊天提示与消息
+  # -------------------------------------------------------------------------
+  prompt:
+    chat-input: "<yellow>请在第 {command} 的聊天框输入 {label}，或输入 cancel 取消：</yellow>"
+    cancel: "cancel"
+    suggest: "<gray>命令已填入聊天框，可修改后回车执行</gray>"
+
+  message:
+    disabled: "<red>此服务器已禁用 Residence 菜单</red>"
+    unknown-command: "<red>未知命令 <white>{command}</white>，它不属于 Residence 菜单</red>"
+    input-cancelled: "<yellow>已取消输入</yellow>"
+    input-empty: "<red>请输入一个值，或输入 cancel 取消</red>"
+    dispatch-failed: "<red>命令执行失败：<white>{command}</white></red>"
+    join: "<gray>你可以使用 <click:run_command:'/res menu'><hover:show_text:'<gray>打开 Residence 菜单</gray>'><gold>/res menu</gold></hover></click> 打开领地菜单</gray>"
+    join-bedrock: "<gray>使用 <click:run_command:'/res menu'><gold>/res menu</gold></click> 打开领地表单，基岩版操作更方便</gray>"
+
+  # 聊天输入时视为取消的词语（基岩版也会用到）
+  cancel-words:
+    - "cancel"
+    - "取消"
+    - "cancelar"
+
+  # -------------------------------------------------------------------------
+  # /res menu check 诊断输出
+  # -------------------------------------------------------------------------
+  check:
+    title: "<gold><bold>Residence 菜单语言自检</bold></gold>"
+    active: "<gray>当前语言：<white>{language}</white>（客户端：<white>{detected}</white>）</gray>"
+    default: "<gray>默认语言：<white>{language}</white></gray>"
+    available: "<gray>已加载语言：<white>{languages}</white></gray>"
+    missing-title: "<yellow>{language} 中缺少 {count} 个键：</yellow>"
+    missing-more: "<dark_gray>……还有 {count} 个</dark_gray>"
+    missing-entry: "<dark_gray>  · {key}</dark_gray>"
+    runtime-title: "<yellow>运行期未找到的键：{count}</yellow>"
